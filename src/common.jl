@@ -28,19 +28,20 @@ function Base.show(io::IO, pixel::Pixel)
     print(io, "TOT: ", pixel.TOT, "\nCAL: ", pixel.CAL, "\n")
 end
 
-function Base.show(io::IO, event::Event)
+function Base.show(io::IO, event::Event, show_map::Bool=false)
     print(io, "Event Data:\n")
     print(io, "BCID:", event.BCID, "\n")
     print(io, "Number of hits:", length(get_pixel_hits(event)), "\n")
+    get_hit_matrix(event)
 end
 
 function Base.show(io::IO, hm::HitMatrix)
     for i = 1:size(hm.vals)[1]
         for j = 1:size(hm.vals)[2]
             if hm.vals[i,j] == 0
-                print(Crayon(foreground = :green, bold=false), "O  ")
+                print(io, Crayon(foreground = :green, bold=false), "O  ")
             elseif hm.vals[i,j] == 1
-                print(Crayon(foreground = :red, bold=true), "X  ")
+                print(io, Crayon(foreground = :red, bold=true), "X  ")
             end
             
         end
