@@ -9,3 +9,35 @@ An example hex dump of ETROC data from the emulator v1 is [here](https://gitlab.
 
 ![](docs/etroc_dataformat.png)
 
+## Examples
+
+A simple unpacker of ETROC emulator data can be run with
+```
+julia read_dump.jl
+```
+
+The output shows the overall event count and a hit map of the first event.
+It should look something like this:
+```
+Number of Events: 143
+Number of filler words: 0
+Hit matrix of event 1 after hex dump:
+Map of hits:
+X  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  X  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
+```
+
