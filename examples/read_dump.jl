@@ -7,5 +7,5 @@ include("../src/unpacker.jl")
 stream_from_dump = read_stream(load_stream("../data/multiple.hex"))
 
 println("Hit matrix of event 1 after hex dump:")
+print("BCID: ", stream_from_dump[1].BCID, "\n")
 get_hit_matrix(stream_from_dump[1])
-

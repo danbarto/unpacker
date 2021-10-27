@@ -46,7 +46,7 @@ function read_stream(stream::Vector{UInt64}) #read a continuous stream of words
             @assert !in_event
             num_filler::Int += 1
         elseif (word >> 12) == 0x3555555 #tag for a header word
-            @assert !in_event
+            @assert !in_event string("Two header words were recieved without a trailer word in between: ", word)
             num_events::Int += 1
             num_hits = 0
             bcid = word & 0xfff #first 12 bits
@@ -62,18 +62,20 @@ function read_stream(stream::Vector{UInt64}) #read a continuous stream of words
             pixels[((row << 4) | col)+1] = Pixel(row, col, 1, TOA, TOT, CAL)
             num_hits += 1
         elseif (word >> 10) == 0x25555555 #tag for a trailer word
-            @assert !parity(word) #parity check
+            @assert !parity(word) string("incorrect parity for trailer word ", word)
             @assert ((word >> 1) & 0x1ff) == num_hits #bits 2-10 are num_hits
-            @assert in_event
+            @assert num_hits <= 256 #make sure that we don't have more than 256 hits
+            @assert in_event string("A trailer word was not preceded by a header word: ", word)
             in_event = false
             num_hits = 0
-            push!(events, Event(bcid, copy(pixels))) #copy to prevent deleting contents when we reset the array
+            push!(events, Event(bcid, copy(pixels))) #copy to prevent deleting contents when we reset the pixel array
             bcid = 0
             reset_pixelarray!(pixels)
         else
             @printf("A word in the data stream was not recognized: %d", word)
         end
     end
+    @assert !in_event && num_hits == 0 "The last header word did not end with a trailer word."
     @printf("Number of Events: %d\nNumber of filler words: %d\n", num_events, num_filler)
     return events
 end

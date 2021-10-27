@@ -107,5 +107,3 @@ function Event(num_hits::Int) #generate event with given number of random hits
     end
     return Event(BCID, pixels)   
 end
-
-
