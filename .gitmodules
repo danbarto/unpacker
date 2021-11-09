@@ -1,0 +1,3 @@
+[submodule "module_test_sw"]
+	path = module_test_sw
+	url = ssh://git@gitlab.cern.ch:7999/cms-etl-electronics/module_test_sw.git
