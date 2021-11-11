@@ -79,6 +79,16 @@ function get_hit_matrix(event::Event)
     print(HM)
 end
 
+function get_TOA_matrix(event::Event)
+    print("Map of hits:\n")
+    hitmap = zeros(16,16)
+    for h in get_pixel_hits(event)
+        hitmap[h.row+1, h.col+1] = h.TOT
+    end
+    return hitmap
+end
+
+
 function Event()
     pixels = Vector{Pixel}(undef, 256)
     for i = 0:255

@@ -12,4 +12,7 @@ println("Hit matrix of event 1 after hex dump:")
 # print("number of hits: ", length(get_pixel_hits(stream_from_dump[1])), "\n")
 #get_hit_matrix(stream_from_dump[1])
 print(stream_from_dump[1])
-plot_evt(stream_from_dump[1])
+test_evt = stream_from_dump[1]
+using Plots
+plot([1:10], [1:10], [1:10], st=[:heatmap]) 
+plot_evt(test_evt)
