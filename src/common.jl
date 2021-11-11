@@ -108,3 +108,16 @@ function Event(num_hits::Int) #generate event with given number of random hits
     end
     return Event(BCID, pixels)   
 end
+
+function get_DataFrame(event::Event)
+    df = DataFrame(row=UInt[], col = UInt[], TOA=UInt[], TOT=UInt[], CAL=UInt[])
+    for i = 1:256
+        pix = event.pixels[i]
+        if pix.hit
+            push!(df, (pix.row, pix.col, pix.TOA, pix.TOT, pix.CAL))
+        else
+            push!(df, (pix.row, pix.col, 0, 0, 0))
+        end
+    end
+    return df
+end
