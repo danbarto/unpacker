@@ -14,3 +14,4 @@ println("Hit matrix of event 1 after hex dump:")
 print(stream_from_dump[1])
 test_evt = stream_from_dump[3]
 plot(test_evt, "TOT")
+plot(stream_from_dump)

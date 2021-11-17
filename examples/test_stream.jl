@@ -16,7 +16,6 @@ dump_stream(write_stream(stream_to_dump, 200))
 
 stream_from_dump = read_stream(load_stream("dump.hex"))
 
-plot(stream_from_dump)
 println("Hit matrix of event 10 before hex dump:")
 get_hit_matrix(stream_to_dump[10])
 
