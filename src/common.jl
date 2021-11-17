@@ -83,11 +83,48 @@ function get_TOA_matrix(event::Event)
     print("Map of hits:\n")
     hitmap = zeros(16,16)
     for h in get_pixel_hits(event)
+        hitmap[h.row+1, h.col+1] = h.TOA
+    end
+    return hitmap
+end
+
+function get_TOT_matrix(event::Event)
+    print("Map of hits:\n")
+    hitmap = zeros(16,16)
+    for h in get_pixel_hits(event)
         hitmap[h.row+1, h.col+1] = h.TOT
     end
     return hitmap
 end
 
+function get_CAL_matrix(event::Event)
+    @assert parameter in ["TOA", "TOT", "CAL"]
+    print("Map of hits:\n")
+    hitmap = zeros(16,16)
+    for h in get_pixel_hits(event)
+        hitmap[h.row+1, h.col+1] = h.CAL
+    end
+    return hitmap
+end
+
+function get_matrix(event::Event, parameter::String)
+    data = zeros(16,16)
+    for h in get_pixel_hits(event)
+        if parameter == "hit"
+            d = 1
+        elseif parameter == "TOA"
+            d = h.TOA
+        elseif parameter == "TOT"
+            d = h.TOT
+        elseif parameter == "CAL"
+            d = h.CAL
+        else
+            error("Did not recognize parameter ", parameter, " in get_matrix()")
+        end
+        data[h.row+1, h.col+1] = d
+    end
+    return data
+end
 
 function Event()
     pixels = Vector{Pixel}(undef, 256)
