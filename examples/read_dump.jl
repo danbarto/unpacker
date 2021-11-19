@@ -13,5 +13,7 @@ println("Hit matrix of event 1 after hex dump:")
 #get_hit_matrix(stream_from_dump[1])
 print(stream_from_dump[1])
 test_evt = stream_from_dump[3]
-plot(test_evt, "TOT")
-plot(stream_from_dump)
+test_TOT_evt = plot(test_evt, "TOT") #plot the TOT heatmap of a single event
+savefig(test_TOT_evt, "/figures/TOT.png")
+hit_heatmap = plot(stream_from_dump) #plot the heatmap of all hits from the hex dump file
+savefig(hit_heatmap, "/figures/hit_heatmap.png")
