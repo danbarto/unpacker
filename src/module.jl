@@ -5,7 +5,7 @@ KCU = pyimport("tamalero.KCU")
 ReadoutBoard = pyimport("tamalero.ReadoutBoard")
 FIFO = pyimport("tamalero.FIFO")
 
-function hex_dump()
+function hex_dump(flag_save::Bool=false)
     println("Using KCU at address: 192.168.0.10")
 
     kcu = KCU.KCU(name="my_device",
@@ -18,7 +18,10 @@ function hex_dump()
     fifo.set_trigger(word0=0x35, word1=0x55, mask0=0xff, mask1=0xff)
     fifo.reset()
     hex_dump = fifo.giant_dump(3000,255)
-    fifo.dump_to_file(hex_dump, n_col=5, filename ="julia_dump.hex")  # use 5 columns --> better to read for our data format
+    if flag_save
+        fifo.dump_to_file(hex_dump, n_col=5, filename ="julia_dump.hex")  # use 5 columns --> better to read for our data format
+    end
+    return hex_dump
 end
 
-hex_dump()
+#println(hex_dump())
