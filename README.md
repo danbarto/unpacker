@@ -1,6 +1,6 @@
 # Unpacker
 
-Software unpacker for preliminary ETROC data format. The software requires the use of the PyCall Julia library. `import Pkg; Pkg.add("PyCall"); Pkg.add("Crayons"); Pkg.add("PlotlyJS"); Pkg.add("DataFrames")`
+Software unpacker for preliminary ETROC data format. The software requires the use of the PyCall Julia library. `import Pkg; Pkg.add("PyCall"); Pkg.add("Crayons"); Pkg.add("Plots");`
 
 This package can create random hit data for the ETROC emulator data format specified [here](https://gitlab.cern.ch/cms-etl-electronics/etroc-emulator/-/blob/master/ETROC%20emulator%20version%201/ETROC_Emulator_20210825.pdf),
 and can subsequently unpack it to reconstruct hits on the 16x16 sensor.
@@ -40,4 +40,8 @@ O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
 O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
 O  O  O  O  O  O  O  O  O  O  O  O  O  O  O  O
 ```
+`read_dump.jl` will also make heatmaps of the Time Over Threshold (TOT) for each pixel in a single event, like so:
+![](docs/TOT.png)
+It will also plot a heatmap of hits in each pixel for the entire hex dump:
+![](docs/hit_heatmap.png)
 
