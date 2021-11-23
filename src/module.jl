@@ -18,8 +18,9 @@ function hex_dump(flag_save::Bool=false)
     fifo.set_trigger(word0=0x35, word1=0x55, mask0=0xff, mask1=0xff)
     fifo.reset()
     hex_dump = fifo.giant_dump(3000,255)
+    hex_dump = fifo.wipe(hex_dump, integer=true)
     if flag_save
-        fifo.dump_to_file(hex_dump, n_col=5, filename ="julia_dump.hex")  # use 5 columns --> better to read for our data format
+        fifo.dump_to_file(hex_dump, filename ="julia_dump.hex")  # use 5 columns --> better to read for our data format
     end
     return hex_dump
 end
