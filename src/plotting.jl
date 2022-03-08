@@ -17,5 +17,6 @@ function plot(stream::Vector{Event})
         hits = hits + get_matrix(evt, "hit")
     end
     heatmap([1:size(hits, 1)], [1:size(hits,2)], hits, size=(700,700),
-            xticks=1:16, yticks=1:16, title="Hits in Each Pixel", xlabel="Column", ylabel="Row") 
+            xticks=1:16, yticks=1:16, title="Hits in Each Pixel", xlabel="Column", ylabel="Row",
+            c=:OrRd_9, clim=(0,100))
 end

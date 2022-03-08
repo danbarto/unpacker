@@ -86,7 +86,7 @@ function dump_stream(stream::Vector{UInt64})
     end
 
     long_word = join(word_list)
-    lines = chunk_string(long_word, 32)  # 16 bytes per line
+    lines = chunk_string(long_word, 10)  # 5 bytes per line
 
     open("dump.hex", "w") do file
         for line in lines
