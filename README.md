@@ -1,6 +1,11 @@
 # Unpacker
 
-Software unpacker for preliminary ETROC data format. The software requires the use of the PyCall Julia library. `import Pkg; Pkg.add("PyCall"); Pkg.add("Crayons"); Pkg.add("Plots");`
+Software unpacker for preliminary ETROC data format. The software requires the use of the PyCall Julia library.
+
+``` shell
+import Pkg; Pkg.add("PyCall"); Pkg.add("Crayons"); Pkg.add("Plots"); Pkg.add("YAML")`
+```
+
 
 This package can create random hit data for the ETROC emulator data format specified [here](https://gitlab.cern.ch/cms-etl-electronics/etroc-emulator/-/blob/master/ETROC%20emulator%20version%201/ETROC_Emulator_20210825.pdf),
 and can subsequently unpack it to reconstruct hits on the 16x16 sensor.
